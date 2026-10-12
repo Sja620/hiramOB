@@ -6,7 +6,7 @@
   "description": "Test extension to confirm the OBR scene API works for programmatic board setup",
   "action": {
     "title": "Hiram Test",
-    "icon": "/icon.svg",
+    "icon": "https://sja620.github.io/hiramOB/icon.svg",
     "popover": "/",
     "height": 220,
     "width": 320
