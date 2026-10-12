@@ -1,0 +1,14 @@
+{
+  "name": "Hiram Test",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "author": "Glendale Lodge No. 23",
+  "description": "Test extension to confirm the OBR scene API works for programmatic board setup",
+  "action": {
+    "title": "Hiram Test",
+    "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%232e7d32'/%3E%3C/svg%3E",
+    "popover": "/",
+    "height": 220,
+    "width": 320
+  }
+}
