@@ -12,6 +12,10 @@
       throw mod = 0, e;
     }
   };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
       for (let key of __getOwnPropNames(from))
@@ -396,6 +400,45 @@
         }
       }
     }
+  });
+
+  // node_modules/@owlbear-rodeo/sdk/lib/index.js
+  var lib_exports = {};
+  __export(lib_exports, {
+    Command: () => Command,
+    Math2: () => Math2,
+    MathM: () => MathM,
+    buildBillboard: () => buildBillboard,
+    buildCurve: () => buildCurve,
+    buildEffect: () => buildEffect,
+    buildImage: () => buildImage,
+    buildImageUpload: () => buildImageUpload,
+    buildLabel: () => buildLabel,
+    buildLight: () => buildLight,
+    buildLine: () => buildLine,
+    buildPath: () => buildPath,
+    buildPointer: () => buildPointer,
+    buildRuler: () => buildRuler,
+    buildSceneUpload: () => buildSceneUpload,
+    buildShape: () => buildShape,
+    buildText: () => buildText,
+    buildWall: () => buildWall,
+    default: () => lib_default,
+    isBillboard: () => isBillboard,
+    isCurve: () => isCurve,
+    isEffect: () => isEffect,
+    isElement: () => isElement,
+    isFormattedText: () => isFormattedText,
+    isImage: () => isImage,
+    isLabel: () => isLabel,
+    isLight: () => isLight,
+    isLine: () => isLine,
+    isPath: () => isPath,
+    isPointer: () => isPointer,
+    isRuler: () => isRuler,
+    isShape: () => isShape,
+    isText: () => isText,
+    isWall: () => isWall
   });
 
   // node_modules/@owlbear-rodeo/sdk/lib/api/PlayerApi.js
@@ -3486,6 +3529,434 @@
     }
   };
 
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/CurveBuilder.js
+  var CurveBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._points = [];
+      this._style = {
+        fillColor: "black",
+        fillOpacity: 1,
+        strokeColor: "white",
+        strokeOpacity: 1,
+        strokeWidth: 5,
+        strokeDash: [],
+        tension: 0.5
+      };
+      this._item.name = "Curve";
+      this._item.layer = "DRAWING";
+    }
+    points(points) {
+      this._points = points;
+      return this.self();
+    }
+    style(style) {
+      this._style = style;
+      return this.self();
+    }
+    fillColor(fillColor) {
+      this._style.fillColor = fillColor;
+      return this.self();
+    }
+    fillOpacity(fillOpacity) {
+      this._style.fillOpacity = fillOpacity;
+      return this.self();
+    }
+    strokeColor(strokeColor) {
+      this._style.strokeColor = strokeColor;
+      return this.self();
+    }
+    strokeOpacity(strokeOpacity) {
+      this._style.strokeOpacity = strokeOpacity;
+      return this.self();
+    }
+    strokeWidth(strokeWidth) {
+      this._style.strokeWidth = strokeWidth;
+      return this.self();
+    }
+    strokeDash(strokeDash) {
+      this._style.strokeDash = strokeDash;
+      return this.self();
+    }
+    tension(tension) {
+      this._style.tension = tension;
+      return this.self();
+    }
+    closed(closed) {
+      this._style.closed = closed;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "CURVE", points: this._points, style: this._style });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/ImageBuilder.js
+  var ImageBuilder = class extends GenericItemBuilder {
+    constructor(player, image, grid) {
+      super(player);
+      this._image = image;
+      this._grid = grid;
+      this._item.name = "Image";
+      this._text = {
+        richText: [
+          {
+            type: "paragraph",
+            children: [{ text: "" }]
+          }
+        ],
+        plainText: "",
+        style: {
+          padding: 8,
+          fontFamily: "Roboto",
+          fontSize: 24,
+          fontWeight: 400,
+          textAlign: "CENTER",
+          textAlignVertical: "BOTTOM",
+          fillColor: "white",
+          fillOpacity: 1,
+          strokeColor: "white",
+          strokeOpacity: 1,
+          strokeWidth: 0,
+          lineHeight: 1.5
+        },
+        type: "PLAIN",
+        width: "AUTO",
+        height: "AUTO"
+      };
+      this._textItemType = "LABEL";
+    }
+    text(text) {
+      this._text = text;
+      return this.self();
+    }
+    textItemType(textItemType) {
+      this._textItemType = textItemType;
+      return this.self();
+    }
+    textWidth(width) {
+      this._text.width = width;
+      return this.self();
+    }
+    textHeight(height) {
+      this._text.height = height;
+      return this.self();
+    }
+    richText(richText) {
+      this._text.richText = richText;
+      return this.self();
+    }
+    plainText(plainText) {
+      this._text.plainText = plainText;
+      return this.self();
+    }
+    textType(textType) {
+      this._text.type = textType;
+      return this.self();
+    }
+    textPadding(padding) {
+      this._text.style.padding = padding;
+      return this.self();
+    }
+    fontFamily(fontFamily) {
+      this._text.style.fontFamily = fontFamily;
+      return this.self();
+    }
+    fontSize(fontSize) {
+      this._text.style.fontSize = fontSize;
+      return this.self();
+    }
+    fontWeight(fontWeight) {
+      this._text.style.fontWeight = fontWeight;
+      return this.self();
+    }
+    textAlign(textAlign) {
+      this._text.style.textAlign = textAlign;
+      return this.self();
+    }
+    textAlignVertical(textAlignVertical) {
+      this._text.style.textAlignVertical = textAlignVertical;
+      return this.self();
+    }
+    textFillColor(fillColor) {
+      this._text.style.fillColor = fillColor;
+      return this.self();
+    }
+    textFillOpacity(fillOpacity) {
+      this._text.style.fillOpacity = fillOpacity;
+      return this.self();
+    }
+    textStrokeColor(strokeColor) {
+      this._text.style.strokeColor = strokeColor;
+      return this.self();
+    }
+    textStrokeOpacity(strokeOpacity) {
+      this._text.style.strokeOpacity = strokeOpacity;
+      return this.self();
+    }
+    textStrokeWidth(strokeWidth) {
+      this._text.style.strokeWidth = strokeWidth;
+      return this.self();
+    }
+    textLineHeight(lineHeight) {
+      this._text.style.lineHeight = lineHeight;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "IMAGE", image: this._image, grid: this._grid, text: this._text, textItemType: this._textItemType });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/LabelBuilder.js
+  var LabelBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._text = {
+        richText: [
+          {
+            type: "paragraph",
+            children: [{ text: "" }]
+          }
+        ],
+        plainText: "",
+        style: {
+          padding: 8,
+          fontFamily: "Roboto",
+          fontSize: 16,
+          fontWeight: 400,
+          textAlign: "CENTER",
+          textAlignVertical: "MIDDLE",
+          fillColor: "white",
+          fillOpacity: 1,
+          strokeColor: "white",
+          strokeOpacity: 1,
+          strokeWidth: 0,
+          lineHeight: 1.5
+        },
+        type: "PLAIN",
+        width: "AUTO",
+        height: "AUTO"
+      };
+      this._style = {
+        backgroundColor: "#3D4051",
+        backgroundOpacity: 1,
+        cornerRadius: 8,
+        pointerDirection: "DOWN",
+        pointerWidth: 4,
+        pointerHeight: 4
+      };
+      this._item.layer = "TEXT";
+      this._item.name = "Label";
+    }
+    text(text) {
+      this._text = text;
+      return this.self();
+    }
+    width(width) {
+      this._text.width = width;
+      return this.self();
+    }
+    height(height) {
+      this._text.height = height;
+      return this.self();
+    }
+    plainText(plainText) {
+      this._text.plainText = plainText;
+      return this.self();
+    }
+    padding(padding) {
+      this._text.style.padding = padding;
+      return this.self();
+    }
+    fontFamily(fontFamily) {
+      this._text.style.fontFamily = fontFamily;
+      return this.self();
+    }
+    fontSize(fontSize) {
+      this._text.style.fontSize = fontSize;
+      return this.self();
+    }
+    fontWeight(fontWeight) {
+      this._text.style.fontWeight = fontWeight;
+      return this.self();
+    }
+    textAlign(textAlign) {
+      this._text.style.textAlign = textAlign;
+      return this.self();
+    }
+    textAlignVertical(textAlignVertical) {
+      this._text.style.textAlignVertical = textAlignVertical;
+      return this.self();
+    }
+    fillColor(fillColor) {
+      this._text.style.fillColor = fillColor;
+      return this.self();
+    }
+    fillOpacity(fillOpacity) {
+      this._text.style.fillOpacity = fillOpacity;
+      return this.self();
+    }
+    strokeColor(strokeColor) {
+      this._text.style.strokeColor = strokeColor;
+      return this.self();
+    }
+    strokeOpacity(strokeOpacity) {
+      this._text.style.strokeOpacity = strokeOpacity;
+      return this.self();
+    }
+    strokeWidth(strokeWidth) {
+      this._text.style.strokeWidth = strokeWidth;
+      return this.self();
+    }
+    lineHeight(lineHeight) {
+      this._text.style.lineHeight = lineHeight;
+      return this.self();
+    }
+    style(style) {
+      this._style = style;
+      return this.self();
+    }
+    backgroundColor(backgroundColor) {
+      this._style.backgroundColor = backgroundColor;
+      return this.self();
+    }
+    backgroundOpacity(backgroundOpacity) {
+      this._style.backgroundOpacity = backgroundOpacity;
+      return this.self();
+    }
+    cornerRadius(cornerRadius) {
+      this._style.cornerRadius = cornerRadius;
+      return this.self();
+    }
+    pointerWidth(pointerWidth) {
+      this._style.pointerWidth = pointerWidth;
+      return this.self();
+    }
+    pointerHeight(pointerHeight) {
+      this._style.pointerHeight = pointerHeight;
+      return this.self();
+    }
+    pointerDirection(pointerDirection) {
+      this._style.pointerDirection = pointerDirection;
+      return this.self();
+    }
+    maxViewScale(maxViewScale) {
+      this._style.maxViewScale = maxViewScale;
+      return this.self();
+    }
+    minViewScale(minViewScale) {
+      this._style.minViewScale = minViewScale;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "LABEL", text: this._text, style: this._style });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/LineBuilder.js
+  var LineBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._style = {
+        strokeColor: "black",
+        strokeOpacity: 1,
+        strokeWidth: 5,
+        strokeDash: []
+      };
+      this._startPosition = { x: 0, y: 0 };
+      this._endPosition = { x: 0, y: 0 };
+      this._item.layer = "DRAWING";
+      this._item.name = "Line";
+    }
+    style(style) {
+      this._style = style;
+      return this.self();
+    }
+    strokeColor(strokeColor) {
+      this._style.strokeColor = strokeColor;
+      return this.self();
+    }
+    strokeOpacity(strokeOpacity) {
+      this._style.strokeOpacity = strokeOpacity;
+      return this.self();
+    }
+    strokeWidth(strokeWidth) {
+      this._style.strokeWidth = strokeWidth;
+      return this.self();
+    }
+    strokeDash(strokeDash) {
+      this._style.strokeDash = strokeDash;
+      return this.self();
+    }
+    startPosition(startPosition) {
+      this._startPosition = startPosition;
+      return this.self();
+    }
+    endPosition(endPosition) {
+      this._endPosition = endPosition;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "LINE", startPosition: this._startPosition, endPosition: this._endPosition, style: this._style });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/PointerBuilder.js
+  var PointerBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._color = "black";
+      this._radius = 20;
+      this._item.layer = "POINTER";
+      this._item.name = "Pointer";
+    }
+    color(color) {
+      this._color = color;
+      return this.self();
+    }
+    radius(radius) {
+      this._radius = radius;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "POINTER", color: this._color, radius: this._radius });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/RulerBuilder.js
+  var RulerBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._startPosition = { x: 0, y: 0 };
+      this._endPosition = { x: 0, y: 0 };
+      this._measurement = "";
+      this._item.layer = "RULER";
+      this._item.name = "Ruler";
+      this._style = {
+        variant: "FILLED"
+      };
+    }
+    startPosition(startPosition) {
+      this._startPosition = startPosition;
+      return this.self();
+    }
+    endPosition(endPosition) {
+      this._endPosition = endPosition;
+      return this.self();
+    }
+    measurement(measurement) {
+      this._measurement = measurement;
+      return this.self();
+    }
+    variant(variant) {
+      this._style.variant = variant;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "RULER", startPosition: this._startPosition, endPosition: this._endPosition, measurement: this._measurement, style: this._style });
+    }
+  };
+
   // node_modules/@owlbear-rodeo/sdk/lib/builders/ShapeBuilder.js
   var ShapeBuilder = class extends GenericItemBuilder {
     constructor(player) {
@@ -3659,6 +4130,302 @@
     }
   };
 
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/PathBuilder.js
+  var PathBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._commands = [];
+      this._fillRule = "nonzero";
+      this._style = {
+        fillColor: "black",
+        fillOpacity: 1,
+        strokeColor: "white",
+        strokeOpacity: 1,
+        strokeWidth: 5,
+        strokeDash: []
+      };
+      this._item.name = "Path";
+      this._item.layer = "DRAWING";
+    }
+    commands(commands) {
+      this._commands = commands;
+      return this.self();
+    }
+    fillRule(fillRule) {
+      this._fillRule = fillRule;
+      return this.self();
+    }
+    style(style) {
+      this._style = style;
+      return this.self();
+    }
+    fillColor(fillColor) {
+      this._style.fillColor = fillColor;
+      return this.self();
+    }
+    fillOpacity(fillOpacity) {
+      this._style.fillOpacity = fillOpacity;
+      return this.self();
+    }
+    strokeColor(strokeColor) {
+      this._style.strokeColor = strokeColor;
+      return this.self();
+    }
+    strokeOpacity(strokeOpacity) {
+      this._style.strokeOpacity = strokeOpacity;
+      return this.self();
+    }
+    strokeWidth(strokeWidth) {
+      this._style.strokeWidth = strokeWidth;
+      return this.self();
+    }
+    strokeDash(strokeDash) {
+      this._style.strokeDash = strokeDash;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "PATH", commands: this._commands, fillRule: this._fillRule, style: this._style });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/ImageUploadBuilder.js
+  var ImageUploadBuilder = class {
+    constructor(file) {
+      this._upload = {
+        file,
+        grid: {
+          dpi: 150,
+          offset: { x: 0, y: 0 }
+        },
+        name: "",
+        rotation: 0,
+        scale: { x: 1, y: 1 },
+        text: {
+          richText: [
+            {
+              type: "paragraph",
+              children: [{ text: "" }]
+            }
+          ],
+          plainText: "",
+          style: {
+            padding: 8,
+            fontFamily: "Roboto",
+            fontSize: 24,
+            fontWeight: 400,
+            textAlign: "CENTER",
+            textAlignVertical: "BOTTOM",
+            fillColor: "white",
+            fillOpacity: 1,
+            strokeColor: "white",
+            strokeOpacity: 1,
+            strokeWidth: 0,
+            lineHeight: 1.5
+          },
+          type: "PLAIN",
+          width: "AUTO",
+          height: "AUTO"
+        },
+        locked: false,
+        textItemType: "LABEL",
+        visible: true
+      };
+    }
+    grid(grid) {
+      this._upload.grid = grid;
+      return this;
+    }
+    dpi(dpi) {
+      this._upload.grid.dpi = dpi;
+      return this;
+    }
+    offset(offset) {
+      this._upload.grid.offset = offset;
+      return this;
+    }
+    name(name) {
+      this._upload.name = name;
+      return this;
+    }
+    description(description) {
+      this._upload.description = description;
+      return this;
+    }
+    rotation(rotation) {
+      this._upload.rotation = rotation;
+      return this;
+    }
+    scale(scale) {
+      this._upload.scale = scale;
+      return this;
+    }
+    locked(locked) {
+      this._upload.locked = locked;
+      return this;
+    }
+    visible(visible) {
+      this._upload.visible = visible;
+      return this;
+    }
+    text(text) {
+      this._upload.text = text;
+      return this;
+    }
+    textItemType(textItemType) {
+      this._upload.textItemType = textItemType;
+      return this;
+    }
+    textWidth(width) {
+      this._upload.text.width = width;
+      return this;
+    }
+    textHeight(height) {
+      this._upload.text.height = height;
+      return this;
+    }
+    richText(richText) {
+      this._upload.text.richText = richText;
+      return this;
+    }
+    plainText(plainText) {
+      this._upload.text.plainText = plainText;
+      return this;
+    }
+    textType(textType) {
+      this._upload.text.type = textType;
+      return this;
+    }
+    textPadding(padding) {
+      this._upload.text.style.padding = padding;
+      return this;
+    }
+    fontFamily(fontFamily) {
+      this._upload.text.style.fontFamily = fontFamily;
+      return this;
+    }
+    fontSize(fontSize) {
+      this._upload.text.style.fontSize = fontSize;
+      return this;
+    }
+    fontWeight(fontWeight) {
+      this._upload.text.style.fontWeight = fontWeight;
+      return this;
+    }
+    textAlign(textAlign) {
+      this._upload.text.style.textAlign = textAlign;
+      return this;
+    }
+    textAlignVertical(textAlignVertical) {
+      this._upload.text.style.textAlignVertical = textAlignVertical;
+      return this;
+    }
+    textFillColor(fillColor) {
+      this._upload.text.style.fillColor = fillColor;
+      return this;
+    }
+    textFillOpacity(fillOpacity) {
+      this._upload.text.style.fillOpacity = fillOpacity;
+      return this;
+    }
+    textStrokeColor(strokeColor) {
+      this._upload.text.style.strokeColor = strokeColor;
+      return this;
+    }
+    textStrokeOpacity(strokeOpacity) {
+      this._upload.text.style.strokeOpacity = strokeOpacity;
+      return this;
+    }
+    textStrokeWidth(strokeWidth) {
+      this._upload.text.style.strokeWidth = strokeWidth;
+      return this;
+    }
+    textLineHeight(lineHeight) {
+      this._upload.text.style.lineHeight = lineHeight;
+      return this;
+    }
+    build() {
+      return this._upload;
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/SceneUploadBuilder.js
+  var SceneUploadBuilder = class {
+    constructor() {
+      this._upload = {
+        name: "New Scene",
+        fog: { filled: false, style: { color: "#222222", strokeWidth: 5 } },
+        grid: {
+          dpi: 150,
+          scale: "5ft",
+          style: {
+            lineColor: "LIGHT",
+            lineOpacity: 0.4,
+            lineType: "DASHED",
+            lineWidth: 2
+          },
+          measurement: "CHEBYSHEV",
+          type: "SQUARE"
+        },
+        items: []
+      };
+    }
+    name(name) {
+      this._upload.name = name;
+      return this;
+    }
+    fogFilled(filled) {
+      this._upload.fog.filled = filled;
+      return this;
+    }
+    fogColor(color) {
+      this._upload.fog.style.color = color;
+      return this;
+    }
+    fogStrokeWidth(width) {
+      this._upload.fog.style.strokeWidth = width;
+      return this;
+    }
+    gridScale(scale) {
+      this._upload.grid.scale = scale;
+      return this;
+    }
+    gridColor(color) {
+      this._upload.grid.style.lineColor = color;
+      return this;
+    }
+    gridOpacity(opacity) {
+      this._upload.grid.style.lineOpacity = opacity;
+      return this;
+    }
+    gridLineType(lineType) {
+      this._upload.grid.style.lineType = lineType;
+      return this;
+    }
+    gridMeasurement(measurement) {
+      this._upload.grid.measurement = measurement;
+      return this;
+    }
+    gridType(type) {
+      this._upload.grid.type = type;
+      return this;
+    }
+    items(items) {
+      this._upload.items = items;
+      return this;
+    }
+    baseMap(baseMap) {
+      this._upload.baseMap = baseMap;
+      return this;
+    }
+    thumbnail(thumbnail) {
+      this._upload.thumbnail = thumbnail;
+      return this;
+    }
+    build() {
+      return this._upload;
+    }
+  };
+
   // node_modules/js-base64/base64.mjs
   var _TD = typeof TextDecoder === "function" ? new TextDecoder("utf-8", { ignoreBOM: true }) : void 0;
   var _TE = typeof TextEncoder === "function" ? new TextEncoder() : void 0;
@@ -3748,6 +4515,177 @@
     return { origin, roomId };
   }
 
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/BillboardBuilder.js
+  var BillboardBuilder = class extends GenericItemBuilder {
+    constructor(player, image, grid) {
+      super(player);
+      this._image = image;
+      this._grid = grid;
+      this._item.name = "Billboard";
+      this._style = {};
+    }
+    maxViewScale(maxViewScale) {
+      this._style.maxViewScale = maxViewScale;
+      return this.self();
+    }
+    minViewScale(minViewScale) {
+      this._style.minViewScale = minViewScale;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "BILLBOARD", image: this._image, grid: this._grid, style: this._style });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/EffectBuilder.js
+  var EffectBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._item.name = "Effect";
+      this._width = 0;
+      this._height = 0;
+      this._sksl = "";
+      this._effectType = "VIEWPORT";
+      this._uniforms = [];
+      this._blendMode = "SRC_OVER";
+    }
+    width(width) {
+      this._width = width;
+      return this.self();
+    }
+    height(height) {
+      this._height = height;
+      return this.self();
+    }
+    sksl(sksl) {
+      this._sksl = sksl;
+      return this.self();
+    }
+    effectType(effectType) {
+      this._effectType = effectType;
+      return this.self();
+    }
+    uniforms(uniforms) {
+      this._uniforms = uniforms;
+      return this.self();
+    }
+    blendMode(blendMode) {
+      this._blendMode = blendMode;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "EFFECT", width: this._width, height: this._height, sksl: this._sksl, effectType: this._effectType, uniforms: this._uniforms, blendMode: this._blendMode });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/LightBuilder.js
+  var LightBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._sourceRadius = 50;
+      this._attenuationRadius = 12 * 150;
+      this._falloff = 1;
+      this._innerAngle = 360;
+      this._outerAngle = 360;
+      this._lightType = "PRIMARY";
+      this._item.name = "Light";
+      this._item.layer = "FOG";
+      this._item.zIndex = 0;
+      this._item.disableAutoZIndex = true;
+    }
+    sourceRadius(sourceRadius) {
+      this._sourceRadius = sourceRadius;
+      return this.self();
+    }
+    attenuationRadius(attenuationRadius) {
+      this._attenuationRadius = attenuationRadius;
+      return this.self();
+    }
+    falloff(falloff) {
+      this._falloff = falloff;
+      return this.self();
+    }
+    innerAngle(innerAngle) {
+      this._innerAngle = innerAngle;
+      return this.self();
+    }
+    outerAngle(outerAngle) {
+      this._outerAngle = outerAngle;
+      return this.self();
+    }
+    lightType(lightType) {
+      this._lightType = lightType;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "LIGHT", sourceRadius: this._sourceRadius, attenuationRadius: this._attenuationRadius, falloff: this._falloff, innerAngle: this._innerAngle, outerAngle: this._outerAngle, lightType: this._lightType });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/builders/WallBuilder.js
+  var WallBuilder = class extends GenericItemBuilder {
+    constructor(player) {
+      super(player);
+      this._points = [];
+      this._doubleSided = true;
+      this._blocking = true;
+      this._item.name = "Wall";
+      this._item.layer = "FOG";
+      this._item.zIndex = 0;
+      this._item.disableAutoZIndex = true;
+    }
+    points(points) {
+      this._points = points;
+      return this.self();
+    }
+    doubleSided(doubleSided) {
+      this._doubleSided = doubleSided;
+      return this.self();
+    }
+    blocking(blocking) {
+      this._blocking = blocking;
+      return this.self();
+    }
+    build() {
+      return Object.assign(Object.assign({}, this._item), { type: "WALL", points: this._points, doubleSided: this._doubleSided, blocking: this._blocking });
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Billboard.js
+  function isBillboard(item) {
+    return item.type === "BILLBOARD";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Curve.js
+  function isCurve(item) {
+    return item.type === "CURVE";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Effect.js
+  function isEffect(item) {
+    return item.type === "EFFECT";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Image.js
+  function isImage(item) {
+    return item.type === "IMAGE";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Label.js
+  function isLabel(item) {
+    return item.type === "LABEL";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Light.js
+  function isLight(item) {
+    return item.type === "LIGHT";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Line.js
+  function isLine(item) {
+    return item.type === "LINE";
+  }
+
   // node_modules/@owlbear-rodeo/sdk/lib/types/items/Path.js
   var Command;
   (function(Command2) {
@@ -3758,6 +4696,403 @@
     Command2[Command2["CUBIC"] = 4] = "CUBIC";
     Command2[Command2["CLOSE"] = 5] = "CLOSE";
   })(Command || (Command = {}));
+  function isPath(item) {
+    return item.type === "PATH";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Pointer.js
+  function isPointer(item) {
+    return item.type === "POINTER";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Ruler.js
+  function isRuler(item) {
+    return item.type === "RULER";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Shape.js
+  function isShape(item) {
+    return item.type === "SHAPE";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Text.js
+  function isText(item) {
+    return item.type === "TEXT";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/TextContent.js
+  function isFormattedText(descendant) {
+    return "text" in descendant;
+  }
+  function isElement(descendant) {
+    return "children" in descendant;
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/types/items/Wall.js
+  function isWall(item) {
+    return item.type === "WALL";
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/common/number.js
+  function roundTo(x, to) {
+    return Math.round(x / to) * to;
+  }
+  function floorTo(x, to) {
+    return Math.floor(x / to) * to;
+  }
+  function toRadians(angle) {
+    return angle * (Math.PI / 180);
+  }
+  function toDegrees(angle) {
+    return angle * (180 / Math.PI);
+  }
+  function lerp(from, to, alpha) {
+    return from * (1 - alpha) + to * alpha;
+  }
+
+  // node_modules/@owlbear-rodeo/sdk/lib/math/Math2.js
+  var Math2 = class {
+    /**
+     * @summary magnitude is used here to not conflict with native length property
+     * @returns The squared length of vector `p`
+     */
+    static magnitudeSquared(p) {
+      return p.x * p.x + p.y * p.y;
+    }
+    /**
+     * @summary magnitude is used here to not conflict with native length property
+     * @returns The length of vector `p`
+     */
+    static magnitude(p) {
+      const dist = Math.sqrt(this.magnitudeSquared(p));
+      if (isNaN(dist)) {
+        return 0;
+      }
+      return dist;
+    }
+    /**
+     * @returns `p` normalized, if length of `p` is 0 `{x: 0, y: 0}` is returned
+     */
+    static normalize(p) {
+      const l = this.magnitude(p);
+      if (l === 0) {
+        return { x: 0, y: 0 };
+      }
+      return this.divide(p, l);
+    }
+    /**
+     * @returns The dot product between `a` and `b`
+     */
+    static dot(a, b) {
+      return a.x * b.x + a.y * b.y;
+    }
+    /**
+     * @returns `a` minus `b`
+     */
+    static subtract(a, b) {
+      if (typeof b === "number") {
+        return { x: a.x - b, y: a.y - b };
+      } else {
+        return { x: a.x - b.x, y: a.y - b.y };
+      }
+    }
+    /**
+     * @returns `a` plus `b`
+     */
+    static add(a, b) {
+      if (typeof b === "number") {
+        return { x: a.x + b, y: a.y + b };
+      } else {
+        return { x: a.x + b.x, y: a.y + b.y };
+      }
+    }
+    /**
+     * @returns `a` multiplied by `b`
+     */
+    static multiply(a, b) {
+      if (typeof b === "number") {
+        return { x: a.x * b, y: a.y * b };
+      } else {
+        return { x: a.x * b.x, y: a.y * b.y };
+      }
+    }
+    /**
+     * @returns `a` divided by `b`
+     */
+    static divide(a, b) {
+      if (typeof b === "number") {
+        return { x: a.x / b, y: a.y / b };
+      } else {
+        return { x: a.x / b.x, y: a.y / b.y };
+      }
+    }
+    /**
+     * Rotates a point around a given origin by an angle in degrees
+     * @param point Point to rotate
+     * @param origin Origin of the rotation
+     * @param angle Angle of rotation in degrees
+     * @returns Rotated point
+     */
+    static rotate(point, origin, angle) {
+      const cos = Math.cos(toRadians(angle));
+      const sin = Math.sin(toRadians(angle));
+      const dif = this.subtract(point, origin);
+      return {
+        x: origin.x + cos * dif.x - sin * dif.y,
+        y: origin.y + sin * dif.x + cos * dif.y
+      };
+    }
+    /**
+     * @returns The min of `a` and `b`
+     */
+    static min(a, b) {
+      if (typeof b === "number") {
+        return { x: Math.min(a.x, b), y: Math.min(a.y, b) };
+      } else {
+        return { x: Math.min(a.x, b.x), y: Math.min(a.y, b.y) };
+      }
+    }
+    /**
+     * @returns The component wise minimum of `a`
+     */
+    static componentMin(a) {
+      return a.x < a.y ? a.x : a.y;
+    }
+    /**
+     * @returns The max of `a` and `b`
+     */
+    static max(a, b) {
+      if (typeof b === "number") {
+        return { x: Math.max(a.x, b), y: Math.max(a.y, b) };
+      } else {
+        return { x: Math.max(a.x, b.x), y: Math.max(a.y, b.y) };
+      }
+    }
+    /**
+     * @returns The component wise maximum of `a`
+     */
+    static componentMax(a) {
+      return a.x > a.y ? a.x : a.y;
+    }
+    /**
+     * Rounds `p` to the nearest value of `to`
+     */
+    static roundTo(p, to) {
+      return {
+        x: roundTo(p.x, to.x),
+        y: roundTo(p.y, to.y)
+      };
+    }
+    /**
+     * Floors `p` to the nearest value of `to`
+     */
+    static floorTo(p, to) {
+      return {
+        x: floorTo(p.x, to.x),
+        y: floorTo(p.y, to.y)
+      };
+    }
+    /**
+     * @returns The component wise sign of `a`
+     */
+    static sign(a) {
+      return { x: Math.sign(a.x), y: Math.sign(a.y) };
+    }
+    /**
+     * @returns The component wise absolute of `a`
+     */
+    static abs(a) {
+      return { x: Math.abs(a.x), y: Math.abs(a.y) };
+    }
+    /**
+     * @returns `a` to the power of `b`
+     */
+    static pow(a, b) {
+      if (typeof b === "number") {
+        return { x: Math.pow(a.x, b), y: Math.pow(a.y, b) };
+      } else {
+        return { x: Math.pow(a.x, b.x), y: Math.pow(a.y, b.y) };
+      }
+    }
+    /**
+     * Clamps `a` between `min` and `max`
+     */
+    static clamp(a, min, max) {
+      return {
+        x: Math.min(Math.max(a.x, min), max),
+        y: Math.min(Math.max(a.y, min), max)
+      };
+    }
+    /**
+     * Calculates an axis-aligned bounding box around an array of point
+     */
+    static boundingBox(points) {
+      let minX = Number.MAX_SAFE_INTEGER;
+      let maxX = Number.MIN_SAFE_INTEGER;
+      let minY = Number.MAX_SAFE_INTEGER;
+      let maxY = Number.MIN_SAFE_INTEGER;
+      for (let point of points) {
+        minX = point.x < minX ? point.x : minX;
+        maxX = point.x > maxX ? point.x : maxX;
+        minY = point.y < minY ? point.y : minY;
+        maxY = point.y > maxY ? point.y : maxY;
+      }
+      let width = maxX - minX;
+      let height = maxY - minY;
+      let center = { x: (minX + maxX) / 2, y: (minY + maxY) / 2 };
+      return {
+        min: { x: minX, y: minY },
+        max: { x: maxX, y: maxY },
+        width,
+        height,
+        center
+      };
+    }
+    /**
+     * Checks to see if a point is in a polygon using ray casting
+     * See more at {@link https://en.wikipedia.org/wiki/Point_in_polygon#Ray_casting_algorithm}
+     * and {@link https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon/2922778}
+     */
+    static pointInPolygon(p, points) {
+      const bounds = this.boundingBox(points);
+      if (p.x < bounds.min.x || p.x > bounds.max.x || p.y < bounds.min.y || p.y > bounds.max.y) {
+        return false;
+      }
+      let isInside = false;
+      for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+        const a = points[i].y > p.y;
+        const b = points[j].y > p.y;
+        if (a !== b && p.x < (points[j].x - points[i].x) * (p.y - points[i].y) / (points[j].y - points[i].y) + points[i].x) {
+          isInside = !isInside;
+        }
+      }
+      return isInside;
+    }
+    /**
+     * @returns True if the distance between `a` and `b` is under `threshold`
+     */
+    static compare(a, b, threshold) {
+      return this.magnitudeSquared(this.subtract(a, b)) < threshold * threshold;
+    }
+    /**
+     * @returns The distance between two vectors
+     */
+    static distance(a, b) {
+      return this.magnitude(this.subtract(a, b));
+    }
+    /**
+     * Linear interpolate between `a` and `b` by `alpha`
+     */
+    static lerp(a, b, alpha) {
+      return { x: lerp(a.x, b.x, alpha), y: lerp(a.y, b.y, alpha) };
+    }
+    /**
+     * @returns The centroid of the given points
+     */
+    static centroid(points) {
+      let center = { x: 0, y: 0 };
+      for (let point of points) {
+        center.x += point.x;
+        center.y += point.y;
+      }
+      if (points.length > 0) {
+        center = { x: center.x / points.length, y: center.y / points.length };
+      }
+      return center;
+    }
+  };
+
+  // node_modules/@owlbear-rodeo/sdk/lib/math/MathM.js
+  var MathM = class _MathM {
+    /**
+     * @returns The inverse of the given `matrix`
+     */
+    static inverse(matrix) {
+      const [m1, m2, m3, m4, m5, m6, m7, m8, m9] = matrix;
+      const det = m1 * (m5 * m9 - m8 * m6) - m2 * (m4 * m9 - m6 * m7) + m3 * (m4 * m8 - m5 * m7);
+      if (Math.abs(det) < 1e-14) {
+        return matrix;
+      }
+      const invdet = 1 / det;
+      const im1 = (m5 * m9 - m8 * m6) * invdet;
+      const im2 = (m3 * m8 - m2 * m9) * invdet;
+      const im3 = (m2 * m6 - m3 * m5) * invdet;
+      const im4 = (m6 * m7 - m4 * m9) * invdet;
+      const im5 = (m1 * m9 - m3 * m7) * invdet;
+      const im6 = (m4 * m3 - m1 * m6) * invdet;
+      const im7 = (m4 * m8 - m7 * m5) * invdet;
+      const im8 = (m7 * m2 - m1 * m8) * invdet;
+      const im9 = (m1 * m5 - m4 * m2) * invdet;
+      return [im1, im2, im3, im4, im5, im6, im7, im8, im9];
+    }
+    /**
+     * @returns `a` multiplied by `b`
+     */
+    static multiply(a, b) {
+      return [
+        a[0] * b[0] + a[1] * b[3] + a[2] * b[6],
+        a[0] * b[1] + a[1] * b[4] + a[2] * b[7],
+        a[0] * b[2] + a[1] * b[5] + a[2] * b[8],
+        a[3] * b[0] + a[4] * b[3] + a[5] * b[6],
+        a[3] * b[1] + a[4] * b[4] + a[5] * b[7],
+        a[3] * b[2] + a[4] * b[5] + a[5] * b[8],
+        a[6] * b[0] + a[7] * b[3] + a[8] * b[6],
+        a[6] * b[1] + a[7] * b[4] + a[8] * b[7],
+        a[6] * b[2] + a[7] * b[5] + a[8] * b[8]
+      ];
+    }
+    /**
+     * Create a new transformation matrix from a position
+     */
+    static fromPosition(position) {
+      return [1, 0, position.x, 0, 1, position.y, 0, 0, 1];
+    }
+    /**
+     * Create a new transformation matrix from a rotation
+     * @param rotation - rotation in degrees
+     */
+    static fromRotation(rotation) {
+      const r = toRadians(rotation);
+      return [Math.cos(r), -Math.sin(r), 0, Math.sin(r), Math.cos(r), 0, 0, 0, 1];
+    }
+    /**
+     * Create a new transformation matrix from a scale
+     */
+    static fromScale(scale) {
+      return [scale.x, 0, 0, 0, scale.y, 0, 0, 0, 1];
+    }
+    static fromItem(item) {
+      const t = _MathM.fromPosition(item.position);
+      const s = _MathM.fromScale(item.scale);
+      const r = _MathM.fromRotation(item.rotation);
+      return _MathM.multiply(_MathM.multiply(t, r), s);
+    }
+    /**
+     * Decompose matrix into its individual parts
+     * Adapted from @link https://frederic-wang.fr/decomposition-of-2d-transform-matrices.html
+     */
+    static decompose(matrix) {
+      const [m1, m2, m3, m4, m5, m6] = matrix;
+      const delta = m1 * m5 - m4 * m2;
+      const result = {
+        position: { x: m3, y: m6 },
+        rotation: 0,
+        scale: { x: 1, y: 1 }
+      };
+      if (m1 != 0 || m4 != 0) {
+        var r = Math.sqrt(m1 * m1 + m4 * m4);
+        result.rotation = m4 > 0 ? Math.acos(m1 / r) : -Math.acos(m1 / r);
+        result.scale = { x: r, y: delta / r };
+      } else if (m2 != 0 || m5 != 0) {
+        var s = Math.sqrt(m2 * m2 + m5 * m5);
+        result.rotation = Math.PI / 2 - (m5 > 0 ? Math.acos(-m2 / s) : -Math.acos(m2 / s));
+        result.scale = { x: delta / s, y: s };
+      } else {
+      }
+      result.rotation = toDegrees(result.rotation);
+      return result;
+    }
+  };
 
   // node_modules/@owlbear-rodeo/sdk/lib/index.js
   var details = getDetails();
@@ -3806,43 +5141,124 @@
     /** True if the current site is embedded in an instance of Owlbear Rodeo */
     isAvailable: Boolean(details.origin)
   };
+  function buildBillboard(image, grid) {
+    return new BillboardBuilder(playerApi, image, grid);
+  }
+  function buildCurve() {
+    return new CurveBuilder(playerApi);
+  }
+  function buildEffect() {
+    return new EffectBuilder(playerApi);
+  }
+  function buildImage(image, grid) {
+    return new ImageBuilder(playerApi, image, grid);
+  }
+  function buildLabel() {
+    return new LabelBuilder(playerApi);
+  }
+  function buildLight() {
+    return new LightBuilder(playerApi);
+  }
+  function buildLine() {
+    return new LineBuilder(playerApi);
+  }
+  function buildPointer() {
+    return new PointerBuilder(playerApi);
+  }
+  function buildRuler() {
+    return new RulerBuilder(playerApi);
+  }
   function buildShape() {
     return new ShapeBuilder(playerApi);
   }
   function buildText() {
     return new TextBuilder(playerApi);
   }
+  function buildPath() {
+    return new PathBuilder(playerApi);
+  }
+  function buildWall() {
+    return new WallBuilder(playerApi);
+  }
+  function buildImageUpload(file) {
+    return new ImageUploadBuilder(file);
+  }
+  function buildSceneUpload() {
+    return new SceneUploadBuilder();
+  }
   var lib_default = OBR;
 
   // app.js
+  var { default: OBR2, buildShape: buildShape2, buildText: buildText2, buildCurve: buildCurve2, buildImage: buildImage2 } = lib_exports;
+  window.SDK = lib_exports;
+  window.OBR = OBR2;
   var statusEl = document.getElementById("status");
   var placeBtn = document.getElementById("place");
-  placeBtn.disabled = true;
-  lib_default.onReady(async () => {
-    const ready = await lib_default.scene.isReady();
+  var fogBtn = document.getElementById("fog");
+  var tokenBtn = document.getElementById("token");
+  var clearBtn = document.getElementById("clear");
+  var allButtons = [placeBtn, fogBtn, tokenBtn, clearBtn];
+  allButtons.forEach((b) => b.disabled = true);
+  async function clearByName(name) {
+    const existing = await OBR2.scene.items.getItems((item) => item.name === name);
+    if (existing.length > 0) {
+      await OBR2.scene.items.deleteItems(existing.map((i) => i.id));
+    }
+  }
+  OBR2.onReady(async () => {
+    const ready = await OBR2.scene.isReady();
     statusEl.textContent = ready ? "scene ready" : "no scene open yet";
-    placeBtn.disabled = !ready;
-    lib_default.scene.onReadyChange((isReady) => {
+    allButtons.forEach((b) => b.disabled = !ready);
+    OBR2.scene.onReadyChange((isReady) => {
       statusEl.textContent = isReady ? "scene ready" : "no scene open";
-      placeBtn.disabled = !isReady;
+      allButtons.forEach((b) => b.disabled = !isReady);
     });
   });
   placeBtn.addEventListener("click", async () => {
-    const existing = await lib_default.scene.items.getItems(
-      (item) => item.name === "hiram-test-marker"
-    );
-    if (existing.length > 0) {
-      await lib_default.scene.items.deleteItems(existing.map((i) => i.id));
-    }
+    await clearByName("hiram-test-marker");
     const position = { x: 0, y: 0 };
-    const box = buildShape().width(200).height(100).shapeType("RECTANGLE").fillColor("#2e7d32").fillOpacity(0.6).strokeColor("#ffffff").position(position).name("hiram-test-marker").build();
-    const label = buildText().richText([
+    const box = buildShape2().width(200).height(100).shapeType("RECTANGLE").fillColor("#2e7d32").fillOpacity(0.6).strokeColor("#ffffff").position(position).name("hiram-test-marker").build();
+    const label = buildText2().richText([
       {
         type: "paragraph",
         children: [{ text: "Hiram was here" }]
       }
     ]).width(200).height(100).position(position).name("hiram-test-marker").build();
-    await lib_default.scene.items.addItems([box, label]);
+    await OBR2.scene.items.addItems([box, label]);
     statusEl.textContent = "placed \u2014 check the board";
+  });
+  fogBtn.addEventListener("click", async () => {
+    await clearByName("hiram-fog-patch");
+    const fog = buildCurve2().points([
+      { x: 300, y: 300 },
+      { x: 600, y: 300 },
+      { x: 600, y: 600 },
+      { x: 300, y: 600 }
+    ]).closed(true).tension(0).fillColor("#000000").fillOpacity(1).strokeColor("#000000").strokeOpacity(1).layer("FOG").name("hiram-fog-patch").build();
+    await OBR2.scene.items.addItems([fog]);
+    statusEl.textContent = "fog placed \u2014 check the board";
+  });
+  tokenBtn.addEventListener("click", async () => {
+    await clearByName("hiram-test-token");
+    const token = buildImage2(
+      {
+        width: 256,
+        height: 256,
+        url: new URL("test_token.png", window.location.href).href,
+        mime: "image/png"
+      },
+      { dpi: 256, offset: { x: 128, y: 128 } }
+    ).position({ x: 900, y: 300 }).layer("CHARACTER").name("hiram-test-token").plainText("Hiram").build();
+    await OBR2.scene.items.addItems([token]);
+    statusEl.textContent = "token placed \u2014 check the board";
+  });
+  clearBtn.addEventListener("click", async () => {
+    const existing = await OBR2.scene.items.getItems(
+      (item) => item.name?.startsWith("hiram-")
+    );
+    if (existing.length > 0) {
+      await OBR2.scene.items.deleteItems(existing.map((i) => i.id));
+    }
+    statusEl.textContent = `cleared ${existing.length} Hiram item(s)`;
   });
 })();
