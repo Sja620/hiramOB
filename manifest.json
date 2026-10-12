@@ -7,7 +7,7 @@
   "action": {
     "title": "Hiram Test",
     "icon": "https://sja620.github.io/hiramOB/icon.svg",
-    "popover": "/",
+    "popover": "https://sja620.github.io/hiramOB/index.html",
     "height": 220,
     "width": 320
   }
