@@ -29,61 +29,6 @@
     <button id="place">Place test item</button>
     <div id="status">waiting for scene...</div>
 
-    <script type="module">
-      import OBR, { buildShape, buildText } from "https://esm.sh/@owlbear-rodeo/sdk@3.1.0";
-
-      const statusEl = document.getElementById("status");
-      const placeBtn = document.getElementById("place");
-      placeBtn.disabled = true;
-
-      OBR.onReady(async () => {
-        const ready = await OBR.scene.isReady();
-        statusEl.textContent = ready ? "scene ready" : "no scene open yet";
-        placeBtn.disabled = !ready;
-
-        OBR.scene.onReadyChange((isReady) => {
-          statusEl.textContent = isReady ? "scene ready" : "no scene open";
-          placeBtn.disabled = !isReady;
-        });
-      });
-
-      placeBtn.addEventListener("click", async () => {
-        const existing = await OBR.scene.items.getItems(
-          (item) => item.name === "hiram-test-marker"
-        );
-        if (existing.length > 0) {
-          await OBR.scene.items.deleteItems(existing.map((i) => i.id));
-        }
-
-        const position = { x: 0, y: 0 };
-
-        const box = buildShape()
-          .width(200)
-          .height(100)
-          .shapeType("RECTANGLE")
-          .fillColor("#2e7d32")
-          .fillOpacity(0.6)
-          .strokeColor("#ffffff")
-          .position(position)
-          .name("hiram-test-marker")
-          .build();
-
-        const label = buildText()
-          .richText([
-            {
-              type: "paragraph",
-              children: [{ text: "Hiram was here" }],
-            },
-          ])
-          .width(200)
-          .height(100)
-          .position(position)
-          .name("hiram-test-marker")
-          .build();
-
-        await OBR.scene.items.addItems([box, label]);
-        statusEl.textContent = "placed — check the board";
-      });
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
