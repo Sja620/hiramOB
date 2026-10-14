@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hiram Facing Arrow</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 16px;
+        font-family: system-ui, sans-serif;
+        background: #1e1e1e;
+        color: #eee;
+      }
+      button {
+        padding: 8px 14px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-right: 8px;
+      }
+      #status {
+        margin-top: 10px;
+        font-size: 13px;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Select a token on the board, then:</p>
+    <button id="add">Add facing arrow</button>
+    <button id="remove">Remove facing arrow</button>
+    <div id="status">waiting for scene...</div>
+
+    <script src="app.js?v=1"></script>
+  </body>
+</html>
