@@ -1,0 +1,14 @@
+{
+  "name": "Hiram Facing Arrow",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "author": "Glendale Lodge No. 23",
+  "description": "Attach a rotatable facing-direction arrow to a token, independent of the token's own rotation",
+  "action": {
+    "title": "Facing Arrow",
+    "icon": "https://sja620.github.io/hiramOB/facing/icon.svg",
+    "popover": "https://sja620.github.io/hiramOB/facing/index.html",
+    "height": 220,
+    "width": 300
+  }
+}
