@@ -5197,7 +5197,8 @@
   var fogBtn = document.getElementById("fog");
   var tokenBtn = document.getElementById("token");
   var clearBtn = document.getElementById("clear");
-  var allButtons = [placeBtn, fogBtn, tokenBtn, clearBtn];
+  var clearSceneBtn = document.getElementById("clearScene");
+  var allButtons = [placeBtn, fogBtn, tokenBtn, clearBtn, clearSceneBtn];
   allButtons.forEach((b) => b.disabled = true);
   async function clearByName(name) {
     const existing = await OBR2.scene.items.getItems((item) => item.name === name);
