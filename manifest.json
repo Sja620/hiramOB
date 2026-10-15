@@ -4,6 +4,7 @@
   "manifest_version": 1,
   "author": "Glendale Lodge No. 23",
   "description": "Test extension to confirm the OBR scene API works for programmatic board setup",
+  "background_url": "/hiramOB/background.html",
   "action": {
     "title": "Hiram Test",
     "icon": "https://sja620.github.io/hiramOB/icon.svg",
