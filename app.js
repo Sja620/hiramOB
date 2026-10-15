@@ -5262,4 +5262,14 @@
     }
     statusEl.textContent = `cleared ${existing.length} Hiram item(s)`;
   });
+  clearSceneBtn.addEventListener("click", async () => {
+  if (!confirm("Clear every prop/token on this scene? (Background/map stays.)")) return;
+  const existing = await OBR2.scene.items.getItems(
+    (item) => item.layer !== "MAP"
+  );
+  if (existing.length > 0) {
+    await OBR2.scene.items.deleteItems(existing.map((i) => i.id));
+  }
+  statusEl.textContent = `cleared ${existing.length} item(s), background kept`;
+  });
 })();
